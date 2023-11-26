@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Pix</title>
+</head>
+
+<body>
+    <h1>Transferência PIX</h1>
+    <script>
+        let cpf = [];
+        let nome = [];
+        let saldo = [];
+        let n = 0;
+
+        cpf[0] = 123;
+        nome[0] = 'Leticia';
+        saldo[0] = 456;
+
+        let inicio = Number(prompt("Escolha uma das opções abaixo: \n 1 - Cadastre sua conta \n 2 - Faça o PIX \n 3 - Sair"));
+        while (inicio == 1 || inicio == 2) {
+            switch (inicio) {
+                case 1:
+                    let cpf1 = Number(prompt("Digite o seu CPF:"));
+                    let nome1 = prompt("Digite o seu nome:");
+                    let saldo1 = Number(prompt("Digite o saldo disponível na sua conta:"));
+
+                    cadastrarConta(cpf1, nome1, saldo1);
+
+                    break;
+                case 2:
+                    let cpfA = Number(prompt("Digite o cpf de origem:"));
+                    let valor = Number(prompt("Digite o valor da transferência:"));
+                    let cpfB = Number(prompt("Digite o CPF de destino:"));
+                    fazerPix(cpfA, valor, cpfB);
+
+                    break;
+                case 3:
+                    alert("3");
+                    break;
+                default:
+                    break;
+            }
+            inicio = Number(prompt("Escolha uma das opções abaixo: \n 1 - Cadastre sua conta \n 2 - Faça o PIX \n 3 - Sair"));
+        }
+
+        function cadastrarConta(cpf1, nome1, saldo1) {
+            n++;
+            cpf[n] = cpf1;
+            nome[n] = nome1;
+            saldo[n] = saldo1;
+
+            alert("Cpf: " + cpf[n] + " Cliente: " + nome[n] + " Saldo: " + saldo[n]);
+        }
+
+        function fazerPix(cpfA, valor, cpfB) {
+            for (let index = 0; index < cpf.length; index++) {
+                if (cpfA === cpf[index]) {
+                    if (saldo[index] >= valor) {
+                        saldo[index] = saldo[index] - valor;
+                        alert("Pix realizado com sucesso!");
+                    } else {
+                        alert("Saldo insuficiente na conta");
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
